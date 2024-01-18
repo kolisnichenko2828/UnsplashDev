@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graph"
+    app:startDestination="@id/searchScreen">
+    <fragment
+        android:id="@+id/searchScreen"
+        android:name="com.staskokoc.unsplashdev.presentation.SearchScreen"
+        android:label="SearchScreen"
+        tools:layout="@layout/fragment_search_screen">
+        <action
+            android:id="@+id/action_searchScreen_to_fullscreenImage"
+            app:destination="@id/fullscreenImage" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullscreenImage"
+        android:name="com.staskokoc.unsplashdev.presentation.FullscreenImage"
+        android:label="fragment_fullscreen_image"
+        tools:layout="@layout/fragment_fullscreen_image">
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
+</navigation>
