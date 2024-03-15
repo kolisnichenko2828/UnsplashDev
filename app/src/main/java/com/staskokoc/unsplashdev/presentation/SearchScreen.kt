@@ -1,5 +1,6 @@
 package com.staskokoc.unsplashdev.presentation
 
+import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -9,12 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.staskokoc.unsplashdev.R
 import com.staskokoc.unsplashdev.databinding.FragmentSearchScreenBinding
 import com.staskokoc.unsplashdev.domain.models.UnsplashImage
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchScreen : Fragment(), OnItemClickListener {
@@ -58,10 +63,17 @@ class SearchScreen : Fragment(), OnItemClickListener {
                 vm.getImages(q = searchText)
             }
         }
+    }
 
-        vm.imagesLd.observe(this) {
-            clearFocusAndHideKeyboard()
-            adapter.submitList((vm.imagesLd.value as MutableList<UnsplashImage>))
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                vm.imagesLd.collect {
+                    clearFocusAndHideKeyboard()
+                    adapter.submitList(it)
+                }
+            }
         }
     }
 
