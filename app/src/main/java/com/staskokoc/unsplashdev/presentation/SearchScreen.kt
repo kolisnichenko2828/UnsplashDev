@@ -1,6 +1,5 @@
 package com.staskokoc.unsplashdev.presentation
 
-import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -16,9 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.staskokoc.unsplashdev.R
 import com.staskokoc.unsplashdev.databinding.FragmentSearchScreenBinding
-import com.staskokoc.unsplashdev.domain.models.UnsplashImage
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

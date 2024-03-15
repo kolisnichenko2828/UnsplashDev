@@ -10,7 +10,6 @@ import coil.load
 import com.staskokoc.unsplashdev.R
 import com.staskokoc.unsplashdev.databinding.LayoutRvListBinding
 import com.staskokoc.unsplashdev.domain.models.UnsplashImage
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ImagesAdapter(
     private val listener: OnItemClickListener,
@@ -24,7 +23,7 @@ class ImagesAdapter(
                 placeholder(R.drawable.ic_launcher_foreground)
                 error(R.drawable.ic_launcher_background)
             }
-            binding.imageView.setOnClickListener() {
+            binding.imageView.setOnClickListener {
                 listener.onItemClick(image.smallImageUrl, position)
             }
             binding.textView.text = "by ${image.authorName}"

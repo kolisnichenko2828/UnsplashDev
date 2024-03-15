@@ -5,9 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.staskokoc.unsplashdev.domain.models.UnsplashImage
 import com.staskokoc.unsplashdev.domain.usecases.GetImageUsecase
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 
 class MainViewModel(val getImagesUsecase: GetImageUsecase) : ViewModel() {
